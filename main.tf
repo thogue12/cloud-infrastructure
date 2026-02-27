@@ -34,7 +34,7 @@ module "platform" {
   subnet_address       = var.subnet_address
   vnet_address         = var.vnet_address
   client_name          = var.client_name
-  azure_subscription_id = var.azure_subscription_id
+
 
 }
 
