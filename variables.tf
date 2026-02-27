@@ -29,6 +29,7 @@ variable "admin_login_password" {
   description = "SQL Server admin password"
   type        = string
   sensitive   = true
+  default = "veryComplex120!@#4"
 }
 
 # Optional inputs
