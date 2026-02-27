@@ -1,0 +1,17 @@
+resource "azurerm_storage_account" "this_storage_account" {
+  name                     = var.storage_account_name
+  resource_group_name      = var.name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  min_tls_version          = "TLS1_2"
+
+}
+
+resource "azurerm_storage_container" "this_container" {
+  name                  = var.contianer_name
+  storage_account_name  = azurerm_storage_account.this_storage_account.name
+  container_access_type = var.contianer_access_type
+
+}
+
