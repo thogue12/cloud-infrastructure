@@ -59,4 +59,3 @@ resource "azurerm_mssql_database" "this_db" {
     prevent_destroy = false
   }
 }
-
