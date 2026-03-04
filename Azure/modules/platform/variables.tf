@@ -26,11 +26,11 @@ variable "admin_login_password" {
 }
 
 # Optional inputs (with defaults)
-variable "database_count" {
-  description = "Number of databases to create"
-  type        = number
-  default     = 1
-}
+# variable "database_count" {
+#   description = "Number of databases to create"
+#   type        = number
+#   default     = 1
+# }
 
 
 variable "subnet_address" {

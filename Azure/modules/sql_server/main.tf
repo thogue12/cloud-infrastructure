@@ -48,7 +48,6 @@ resource "azurerm_mssql_elasticpool" "this_elastic_pool" {
 ## Sql database
 ######################################################################
 resource "azurerm_mssql_database" "this_db" {
-  count        = var.database_count
   name         = "${var.database_name}-${count.index}"
   server_id    = azurerm_mssql_server.this_sql_server.id
   elastic_pool_id = azurerm_mssql_elasticpool.this_elastic_pool.id
