@@ -37,7 +37,6 @@ module "sql_server" {
   elasticpool_name     = local.elasticpool_name
   vnet_rule_name       = local.vnet_rule_name
   database_name        = local.database_name
-  database_count       = var.database_count
 }
 
 module "app_service_plan" {
