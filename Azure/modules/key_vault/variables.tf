@@ -8,7 +8,7 @@ variable "purge_protection_enabled" {
   type = bool
 }
 
-variable "key_valut_name" {
+variable "key_vault_name" {
   type = string
 }
 

@@ -3,5 +3,10 @@ output "storage_account_name" {
 }
 
 output "storage_account_primary_key" {
-  value = azurerm_storage_account.this_storage_account.primary_access_key
+  value     = azurerm_storage_account.this_storage_account.primary_access_key
+  sensitive = true
+}
+
+output "storage_account_id" {
+  value = azurerm_storage_account.this_storage_account.id
 }

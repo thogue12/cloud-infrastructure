@@ -24,25 +24,39 @@ provider "azurerm" {
   }
 }
 
-
-module "platform" {
-  source               = "./Azure/modules/platform"
-  environment          = var.environment
-  project_name         = var.project_name
-  location             = var.location
-  admin_login_password = var.admin_login_password
-  subnet_address       = var.subnet_address
-  vnet_address         = var.vnet_address
-  client_name          = var.client_name
-
-
+module "platform2" {
+  source             = "./Azure/platforms/platform2"
+  project_name       = var.project_name
+  location           = var.location
+  subnet_address     = var.subnet_address
+  aks_subnet_address = var.aks_subnet_address
+  vnet_address       = var.vnet_address
+  environment        = var.environment
+  should_delegate    = var.should_delegate
+  enable_nat_gateway = var.enable_nat_gateway
+  node_count         = var.node_count
 }
 
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "tf_state"
-    storage_account_name = ""
-    container_name       = ""
-    key                  = ""
-  }
-}
+# module "platform" {
+#   source               = "./Azure/modules/platforms/platform1"
+#   environment          = var.environment
+#   project_name         = var.project_name
+#   location             = var.location
+#   admin_login_password = var.admin_login_password
+#   subnet_address       = var.subnet_address
+#   vnet_address         = var.vnet_address
+#   client_name          = var.client_name
+#   enable_nat_gateway   = var.enable_nat_gateway
+
+
+
+# }
+
+# terraform {
+#   backend "azurerm" {
+#     resource_group_name  = "tf_state"
+#     storage_account_name = ""
+#     container_name       = ""
+#     key                  = ""
+#   }
+# }

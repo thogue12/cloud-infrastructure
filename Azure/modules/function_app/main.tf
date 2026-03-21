@@ -8,23 +8,25 @@ resource "azurerm_linux_function_app" "this_function_app" {
   storage_account_name       = var.storage_account_name
   storage_account_access_key = var.storage_account_access_key
   service_plan_id            = var.app_service_plan_id
-  virtual_network_subnet_id = var.subnet_id  
-    
+  virtual_network_subnet_id  = var.subnet_id
+  https_only                 = true
+  functions_extension_version = "~4"
+  client_certificate_mode    = "Required"
 
   site_config {
     vnet_route_all_enabled = true
-    always_on = true
+    always_on              = true
+    minimum_tls_version    = "1.2"
+
     application_stack {
       dotnet_version = "8.0"
     }
-    
   }
 
   identity {
     type = "SystemAssigned"
   }
 }
-
 
 resource "azurerm_role_assignment" "this_ra" {
   scope                = "/subscriptions/${data.azurerm_client_config.current.subscription_id}"

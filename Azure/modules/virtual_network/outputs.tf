@@ -13,3 +13,11 @@ output "subnet_address" {
 output "subnet_id" {
   value = azurerm_subnet.this_subnet.id
 }
+
+output "vnet_address_space" {
+  value = azurerm_virtual_network.this_vnet.address_space
+}
+
+output "vnet_name" {
+  value = azurerm_virtual_network.this_vnet.name
+}

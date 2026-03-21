@@ -3,14 +3,16 @@ output "sql_server_id" {
 }
 
 output "administrator_login" {
-  value = azurerm_mssql_server.this_sql_server.administrator_login
+  value     = azurerm_mssql_server.this_sql_server.administrator_login
+  sensitive = true
 }
 
 output "admin_login_password" {
-  value = azurerm_mssql_server.this_sql_server.administrator_login_password
+  value     = azurerm_mssql_server.this_sql_server.administrator_login_password
+  sensitive = true
 }
 
 output "database_names" {
-  value = azurerm_mssql_server.this_sql_server.administrator_login
+  value     = azurerm_mssql_server.this_sql_server.administrator_login
+  sensitive = true
 }
-

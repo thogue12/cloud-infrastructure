@@ -12,18 +12,20 @@ resource "azurerm_subnet" "this_subnet" {
   address_prefixes     = var.subnet_address
   service_endpoints = [ "Microsoft.Sql", "Microsoft.Storage"] #remember to add this in order to setp the vnet rules on the sql server
 
-  delegation {
-    name = "functionapp_delegation"
-    service_delegation {
-      name = "Microsoft.Web/serverFarms"
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action",
-      ]
+  dynamic "delegation" {
+    for_each = var.delegation_config
+    content {
+      name = delegation.value.name
+      service_delegation {
+        name = delegation.value.service_name
+        actions = delegation.value.service_actions
+      }
     }
   }
 }
 
 resource "azurerm_public_ip" "nat_ip" {
+  count               = var.enable_nat_gateway ? 1 : 0
   name                = "NAT-PIP"
   location            = var.location
   resource_group_name = var.name
@@ -32,6 +34,7 @@ resource "azurerm_public_ip" "nat_ip" {
 }
 
 resource "azurerm_nat_gateway" "this_nat" {
+  count               = var.enable_nat_gateway ? 1 : 0
   name                = "GlobalAdmin-NatGateway"
   location            = var.location
   resource_group_name = var.name
@@ -39,11 +42,13 @@ resource "azurerm_nat_gateway" "this_nat" {
 }
 
 resource "azurerm_nat_gateway_public_ip_association" "example" {
-  nat_gateway_id       = azurerm_nat_gateway.this_nat.id
-  public_ip_address_id = azurerm_public_ip.nat_ip.id
+  count                 = var.enable_nat_gateway ? 1 : 0
+  nat_gateway_id       = azurerm_nat_gateway.this_nat[0].id
+  public_ip_address_id = azurerm_public_ip.nat_ip[0].id
 }
 
 resource "azurerm_subnet_nat_gateway_association" "nat_association"{
-  subnet_id = azurerm_subnet.this_subnet.id
-  nat_gateway_id = azurerm_nat_gateway.this_nat.id
+  count                 = var.enable_nat_gateway ? 1 : 0
+  subnet_id             = azurerm_subnet.this_subnet.id
+  nat_gateway_id        = azurerm_nat_gateway.this_nat[0].id
 }

@@ -3,7 +3,7 @@ variable "vnet_name" {
 }
 
 variable "vnet_address" {
-  type =  list(string)
+  type = list(string)
 }
 
 variable "location" {
@@ -15,14 +15,30 @@ variable "name" {
 }
 
 variable "environment" {
-  type = string
+  type        = string
   description = "The environment (dev, test, prod)"
 }
 
 variable "subnet_address" {
-  type =  list(string)
+  type = list(string)
 }
 
 variable "subnet_name" {
-  type =  string
+  type = string
+}
+
+variable "enable_nat_gateway" {
+  type        = bool
+  description = "Determine whether to create the NAT Gateway"
+  default     = false
+}
+
+variable "delegation_config" {
+  description = "List of delegation configurations for the subnet"
+  type = list(object({
+    name    = string
+    service_name    = string
+    service_actions = list(string)
+  }))
+  default = []
 }

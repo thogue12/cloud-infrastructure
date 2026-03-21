@@ -1,0 +1,10 @@
+azure-mgmt-resource
+azure-mgmt-storage
+azure-identity
+azure-storage-blob
+PyGithub
+GitPython
+docker
+boto3
+checkov
+hypothesis

@@ -1,3 +1,4 @@
+
 variable "sql_server_name" {
   type = string
 }
@@ -9,6 +10,7 @@ variable "elasticpool_name" {
 variable "name" {
   type = string
 }
+
 variable "location" {
   type = string
 }
@@ -16,8 +18,9 @@ variable "location" {
 variable "admin_login" {
   type = string
 }
+
 variable "admin_login_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -34,11 +37,16 @@ variable "database_name" {
 }
 
 variable "edtu" {
-  type = number
+  type    = number
   default = 100
 }
 
-# variable "database_count" {
-#   type = number
-#   default = 1
-# }
+variable "aad_admin_login" {
+  type        = string
+  description = "Azure AD administrator login username for the SQL server"
+}
+
+variable "aad_admin_object_id" {
+  type        = string
+  description = "Azure AD administrator object ID for the SQL server"
+}

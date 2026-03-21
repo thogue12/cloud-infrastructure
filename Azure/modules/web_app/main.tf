@@ -1,20 +1,25 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_windows_web_app" "this_web_app" {
-  name                = var.web_application_name
-  resource_group_name = var.name
-  location            = var.location
-  service_plan_id     = var.web_app_service_plan_id
+  name                       = var.web_application_name
+  resource_group_name        = var.name
+  location                   = var.location
+  service_plan_id            = var.web_app_service_plan_id
+  https_only                 = true
+  client_certificate_enabled = true
+  client_certificate_mode    = "Required"
 
   site_config {
-    always_on = false ## always_on cannot be set to true when using Free, F1, D1 Sku
+    always_on           = false ## always_on cannot be set to true when using Free, F1, D1 Sku
+    minimum_tls_version = "1.2"
   }
 
   identity {
     type = "SystemAssigned"
   }
+
   auth_settings_v2 {
-    auth_enabled = true
+    auth_enabled     = true
     default_provider = "azureactivedirectory"
 
     login {
@@ -22,11 +27,10 @@ resource "azurerm_windows_web_app" "this_web_app" {
     }
 
     active_directory_v2 {
-      client_id = data.azurerm_client_config.current.client_id
+      client_id            = data.azurerm_client_config.current.client_id
       tenant_auth_endpoint = "https://sts.windows.net/${data.azurerm_client_config.current.tenant_id}/v2.0"
     }
+
     unauthenticated_action = "RedirectToLoginPage"
   }
-
-  
 }
