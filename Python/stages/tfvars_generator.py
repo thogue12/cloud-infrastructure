@@ -14,6 +14,12 @@ REQUIRED_KEYS = [
     "node_count",
 ]
 
+# Maps cloud_provider to the top-level cloud directory name
+CLOUD_DIR_MAP = {
+    "azure": "Azure",
+    "aws": "AWS",
+}
+
 
 class TfvarsGenerator(Stage):
     name = "TfvarsGenerator"
@@ -29,14 +35,19 @@ class TfvarsGenerator(Stage):
 
         project_name = ctx.variables["project_name"]
         environment = ctx.variables["environment"]
-        filename = f"{project_name}-{environment}.tfvars.json"
+        cloud_dir = CLOUD_DIR_MAP.get(ctx.cloud_provider.lower(), ctx.cloud_provider.capitalize())
+
+        # Build output path: <Cloud>/Environments/<environment>/clients/<project_name>.tfvars.json
+        output_dir = os.path.join(cloud_dir, "Environments", environment, "clients")
+        os.makedirs(output_dir, exist_ok=True)
+        filepath = os.path.join(output_dir, f"{project_name}.tfvars.json")
 
         try:
-            with open(filename, "w") as f:
+            with open(filepath, "w") as f:
                 json.dump(ctx.variables, f, indent=4)
         except OSError as e:
             return StageResult(success=False, message=f"Failed to write tfvars file: {e}")
 
-        ctx.tfvars_path = os.path.abspath(filename)
+        ctx.tfvars_path = os.path.abspath(filepath)
         print(f"[TfvarsGenerator] tfvars written to: {ctx.tfvars_path}")
         return StageResult(success=True, message=f"tfvars written to {ctx.tfvars_path}")

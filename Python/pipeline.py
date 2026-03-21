@@ -81,7 +81,7 @@ if __name__ == "__main__":
         github_repo="thogue12/cloud-platform-pipelines",
         github_branch="main",
         # Azure backend inputs (required when cloud_provider="azure")
-        subscription_id="",
+        subscription_id="61fbcac7-2f66-43f1-aca9-bfbab5b91195",
         storage_account_name="pythontfstateaccount",
         resource_group_name="tf_state",
         # AWS backend inputs (required when cloud_provider="aws")

@@ -30,7 +30,7 @@ class ArtifactPublisher(Stage):
         try:
             gh = Github(token)
             repo = gh.get_repo(ctx.github_repo)
-            remote_path = os.path.basename(ctx.tfvars_path)
+            remote_path = os.path.relpath(ctx.tfvars_path, start=os.getcwd())
             commit_message = f"chore: update tfvars for deployment"
 
             try:
