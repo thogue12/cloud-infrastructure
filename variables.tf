@@ -2,7 +2,7 @@
 variable "azure_subscription_id" {
   type      = string
   sensitive = true
-  default   = "0bb37931-2a1a-4eb2-92ec-538527b9cf6d"
+  default   = ""
 }
 
 variable "project_name" {
