@@ -21,12 +21,12 @@ resource "azurerm_key_vault" "this_key_vault" {
 
 }
 resource "azurerm_role_assignment" "key_vault_admin" {
-  scope                = data.azurerm_subscription.primary.id
+  scope                = azurerm_key_vault.this_key_vault.id
   role_definition_name = "Key Vault Administrator"
   principal_id         = data.azurerm_client_config.current.object_id
 }
 resource "azurerm_role_assignment" "key_vault_secretes" {
-  scope                = data.azurerm_subscription.primary.id
+  scope                = azurerm_key_vault.this_key_vault.id
   role_definition_name = "Key Vault Secrets User"
   principal_id         = data.azurerm_client_config.current.object_id
 }
