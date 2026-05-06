@@ -11,13 +11,13 @@ locals {
   vnet_rule_name        = "${var.project_name}-vnet-rule-${var.environment}" 
   web_app_name          = "${var.project_name}-web-${var.environment}"
   api_app_name          = "${var.project_name}-api-${var.environment}"
-  key_vault_name        = "${var.client_name}-${var.project_name}-kv-${local.random_suffix}-${var.environment}"
+  key_vault_name        = "${var.client_name}-${var.project_name}-kv-${var.environment}"
   storage_account1_name = "${var.client_name}st${local.random_suffix}${var.environment}"
   storage_account2_name = "another${local.random_suffix}${var.environment}"
   container1_name       = "${var.client_name}-cont-${var.environment}"
   container2_name       = "container${local.random_suffix}${var.environment}"
-  function_app_name     = "${var.project_name}-${var.client_name}-func-${var.environment}"  # Added
-  web_application_name  = "${var.project_name}-${var.client_name}-webapp-${var.environment}"  # Added
+  function_app_name     = "${var.project_name}-${var.client_name}-func-${var.environment}"  
+  web_application_name  = "${var.project_name}-${var.client_name}-webapp-${var.environment}" 
   
   # SQL settings
   admin_login = "${var.project_name}admin"  
