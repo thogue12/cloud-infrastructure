@@ -25,8 +25,8 @@ locals {
   # App Service settings
   web_os           = "Windows"  
   api_os           = "Linux"   
-  api_sku_name     = var.environment == "prod" ? "P1v2" : "S1"  
-  web_app_sku_name = var.environment == "prod" ? "P1v2" : "S1"  
+  api_sku_name     = var.environment == "prod" ? "S1" : "S1"  
+  web_app_sku_name = var.environment == "prod" ? "S1" : "S1"  
   
   # Key Vault settings
   purge_protection_enabled = var.environment == "prod" ? true : false  
