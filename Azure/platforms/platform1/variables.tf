@@ -23,6 +23,7 @@ variable "admin_login_password" {
   description = "SQL Server admin password"
   type        = string
   sensitive   = true
+  default     = "Timosbuodf1290#$%"
 }
 
 
