@@ -63,3 +63,7 @@ variable "admin_login_password" {
   sensitive   = true
   default     = "Timosbuodf1290#$%"
 }
+variable "client_name" {
+  description = "client name for resource naming"
+  type        = string
+}
