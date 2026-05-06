@@ -5,9 +5,9 @@ resource "azurerm_windows_web_app" "this_web_app" {
   resource_group_name        = var.name
   location                   = var.location
   service_plan_id            = var.web_app_service_plan_id
-  https_only                 = true
-  client_certificate_enabled = true
-  client_certificate_mode    = "Required"
+  https_only                 = false
+  client_certificate_enabled = false
+# client_certificate_mode    = "Required"
 
   site_config {
     always_on           = false ## always_on cannot be set to true when using Free, F1, D1 Sku
