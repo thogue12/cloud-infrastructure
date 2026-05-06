@@ -47,7 +47,8 @@ provider "azurerm" {
    vnet_address         = var.vnet_address
    client_name          = var.client_name
    enable_nat_gateway   = var.enable_nat_gateway
-
+   web_app_sku_name     = var.web_app_sku_name
+   api_sku_name         = var.api_sku_name
 
 
  }
