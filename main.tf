@@ -38,7 +38,7 @@ provider "azurerm" {
 #}
 
  module "platform" {
-   source               = "./Azure/modules/platforms/platform1"
+   source               = "./Azure/platforms/platform1"
    environment          = var.environment
    project_name         = var.project_name
    location             = var.location
