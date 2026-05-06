@@ -41,12 +41,12 @@ variable "edtu" {
   default = 100
 }
 
-variable "aad_admin_login" {
-  type        = string
-  description = "Azure AD administrator login username for the SQL server"
-}
+# variable "aad_admin_login" {
+#   type        = string
+#   description = "Azure AD administrator login username for the SQL server"
+# }
 
-variable "aad_admin_object_id" {
-  type        = string
-  description = "Azure AD administrator object ID for the SQL server"
-}
+# variable "aad_admin_object_id" {
+#   type        = string
+#   description = "Azure AD administrator object ID for the SQL server"
+# }
