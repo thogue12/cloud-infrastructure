@@ -12,11 +12,11 @@ resource "azurerm_mssql_server" "this_sql_server" {
   minimum_tls_version           = "1.2"
   public_network_access_enabled = false
 
-  azuread_administrator {
-    login_username = var.aad_admin_login
-    object_id      = var.aad_admin_object_id
-  }
-}
+#   azuread_administrator {
+#     login_username = var.aad_admin_login
+#     object_id      = var.aad_admin_object_id
+#   }
+# }
 
 resource "azurerm_mssql_server_transparent_data_encryption" "this_tde" {
   server_id = azurerm_mssql_server.this_sql_server.id
