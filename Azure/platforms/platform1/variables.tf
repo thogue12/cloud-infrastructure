@@ -45,3 +45,12 @@ variable "enable_nat_gateway" {
   type = bool
   description = "Determine whether you need to create the NATGW"
 }
+variable "web_app_sku_name" {
+  type = string
+  description = "can be B2, B3, D1, F1,I2-3,P1v2,P2v2, S1-3"
+}
+
+variable "api_sku_name" {
+  type = string
+  description = "can be B2, B3, D1, F1,I2-3,P1v2,P2v2, S1-3"
+}
