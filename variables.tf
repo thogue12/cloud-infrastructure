@@ -53,7 +53,7 @@ variable "vnet_address" {
 #   description = "Determine whether or not the subnet delegation should be created"
 # }
 
-# variable "enable_nat_gateway" {
-#   type = bool
-#   description = "Determine whether you need to create the NATGW"
-# }
+variable "enable_nat_gateway" {
+  type = bool
+  description = "Determine whether you need to create the NATGW"
+}
