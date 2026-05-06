@@ -57,3 +57,9 @@ variable "enable_nat_gateway" {
   type = bool
   description = "Determine whether you need to create the NATGW"
 }
+variable "admin_login_password" {
+  description = "SQL Server admin password"
+  type        = string
+  sensitive   = true
+  default     = "Timosbuodf1290#$%"
+}
